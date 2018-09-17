@@ -7,13 +7,13 @@ export default class VenueMapper {
   getPlacesToGo() {
     return this.venues
       .filter((venue) => {
-        let isAllow = true;
+        let isAllowed = true;
 
         this.users.forEach((user) => {
-          isAllow = user.wont_eat.every(userPref => !venue.food.includes(userPref));
+          isAllowed = user.wont_eat.every(userPref => !venue.food.includes(userPref));
         });
 
-        return isAllow;
+        return isAllowed;
       })
       .map(venue => venue.name);
   }
