@@ -26,7 +26,7 @@ export default class VenueMapper {
     const reasons = [];
 
     this.users.forEach(user => {
-      const firstName = user.name.split(' ')[0];
+      const [firstName] = user.name.split(' ');
 
       const matchesAllFoodPrefs = !user.wont_eat.some(userPref => {
         return venue.food.includes(userPref);
