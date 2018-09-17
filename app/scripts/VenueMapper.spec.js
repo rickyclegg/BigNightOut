@@ -18,7 +18,7 @@ describe('VenueMapper', () => {
       expect(vm.getVenueAvailability().canGo).toEqual(['Spice of life']);
     });
 
-    it('should return no venues when there are no matches', () => {
+    it('should return no venues when there are matching food or drinks', () => {
       const venue = {
         drinks: ['Vokda', 'Gin', 'whisky', 'Beer'],
         food: ['Eggs', 'Meat', 'Pasta', 'Dairy'],
@@ -36,7 +36,7 @@ describe('VenueMapper', () => {
       ]);
     });
 
-    it('should return no venues when a user conflicts with another', () => {
+    it('should return no venues when a user prefs overrides another', () => {
       const venue = {
         drinks: ['Vokda', 'Gin', 'whisky', 'Cider'],
         food: ['Eggs', 'Meat', 'Fish', 'Pasta', 'Dairy'],
@@ -47,7 +47,7 @@ describe('VenueMapper', () => {
       expect(vm.getVenueAvailability().canGo.length).toEqual(0);
     });
 
-    it('should return 4 venues when Fish, Eggs, Pasta, Bread, Pasta are not allowed', () => {
+    it('should return 1 venues when Fish, Eggs, Pasta, Bread, Pasta are not allowed', () => {
       const vm = new VenueMapper(usersData.slice(0, 3), venuesData);
 
       expect(vm.getVenueAvailability().canGo).toEqual(['Spirit House']);
@@ -55,7 +55,7 @@ describe('VenueMapper', () => {
   });
 
   describe('Cannot go to', () => {
-    it('should return 1 reason why we cannot have mexican', () => {
+    it('should return 1 drink reason why we cannot go to Spice of life', () => {
       const venue = {
         drinks: ['Vokda', 'Gin', 'whisky', 'Beer'],
         food: ['Eggs', 'Meat', 'Pasta', 'Dairy'],
