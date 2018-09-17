@@ -5,6 +5,16 @@ export default class VenueMapper {
   }
 
   getPlacesToGo() {
-    return ['El Cantina'];
+    return this.venues
+      .filter((venue) => {
+        let isAllow = true;
+
+        this.users.forEach((user) => {
+          isAllow = user.wont_eat.every(userPref => !venue.food.includes(userPref));
+        });
+
+        return isAllow;
+      })
+      .map(venue => venue.name);
   }
 }

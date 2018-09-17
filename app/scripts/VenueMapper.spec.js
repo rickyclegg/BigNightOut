@@ -27,6 +27,6 @@ describe('VenueMapper', () => {
     };
     const vm = new VenueMapper([user], [venue]);
 
-    expect(vm.getPlacesToGo()).toEqual([]);
+    expect(vm.getPlacesToGo().length).toEqual(0);
   });
 });
