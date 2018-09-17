@@ -6,7 +6,7 @@
   "scripts": {
     "start": "gulp serve",
     "lint": "gulp lint && gulp lint:test",
-    "unit": "jasmine JASMINE_CONFIG_PATH=jasmine.json",
+    "unit": "babel-node jasmine.js",
     "test": "npm run lint && npm run unit"
   },
   "devDependencies": {
@@ -50,6 +50,8 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
+    "babel-cli": "^6.26.0",
+    "eslint-plugin-jasmine": "^2.10.1",
     "jasmine": "^3.2.0"
   }
 }
