@@ -11,7 +11,7 @@ describe('VenueMapper', () => {
     const venue = {food: ['Mexican'], name: 'El Cantina'};
     const vm = new VenueMapper([user], [venue]);
 
-    expect(vm.getPlacesToGo()).toEqual(['El Cantina']);
+    expect(vm.getPlacesToGo().canGo).toEqual(['El Cantina']);
   });
 
   it('should return no venues when there are no matches', () => {
@@ -19,7 +19,7 @@ describe('VenueMapper', () => {
     const venue = {food: ['Mexican'], name: 'El Cantina'};
     const vm = new VenueMapper([user], [venue]);
 
-    expect(vm.getPlacesToGo().length).toEqual(0);
+    expect(vm.getPlacesToGo().canGo.length).toEqual(0);
   });
 
   it('should return no venues when a user conflicts with another', () => {
@@ -28,13 +28,13 @@ describe('VenueMapper', () => {
     const venue = {food: ['Mexican'], name: 'El Cantina'};
     const vm = new VenueMapper([user1, user2], [venue]);
 
-    expect(vm.getPlacesToGo().length).toEqual(0);
+    expect(vm.getPlacesToGo().canGo.length).toEqual(0);
   });
 
   it('should return 4 venues when Fish, Eggs, Pasta, Bread, Pasta are not allowed', () => {
     const vm = new VenueMapper(usersData.slice(0, 3), venuesData);
 
-    expect(vm.getPlacesToGo()).toEqual([
+    expect(vm.getPlacesToGo().canGo).toEqual([
       'El Cantina',
       'Twin Dynasty',
       'Wagamama',

@@ -5,11 +5,13 @@ export default class VenueMapper {
   }
 
   getPlacesToGo() {
-    return this.venues
-      .filter((venue) => {
-        return this._canPartyAtVenue(venue);
-      })
-      .map(venue => venue.name);
+    return {
+      canGo: this.venues
+        .filter((venue) => {
+          return this._canPartyAtVenue(venue);
+        })
+        .map(venue => venue.name)
+    };
   }
 
   _canPartyAtVenue(venue) {
