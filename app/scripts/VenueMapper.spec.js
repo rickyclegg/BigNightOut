@@ -31,15 +31,14 @@ describe('VenueMapper', () => {
     expect(vm.getPlacesToGo().length).toEqual(0);
   });
 
-  it('should return 5 venues when Fish, Eggs, Pasta, Bread, Pasta are not allowed', () => {
+  it('should return 4 venues when Fish, Eggs, Pasta, Bread, Pasta are not allowed', () => {
     const vm = new VenueMapper(usersData.slice(0, 3), venuesData);
 
     expect(vm.getPlacesToGo()).toEqual([
       'El Cantina',
       'Twin Dynasty',
       'Wagamama',
-      'Spirit House',
-      'Tally Joe'
+      'Spirit House'
     ]);
   });
 });
