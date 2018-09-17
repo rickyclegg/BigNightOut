@@ -1,22 +1,40 @@
 export default class VenueMapper {
+
   constructor(users, venues) {
     this.users = users;
     this.venues = venues;
   }
 
-  getPlacesToGo() {
-    return {
-      canGo: this.venues
-        .filter((venue) => {
-          return this._canPartyAtVenue(venue);
-        })
-        .map(venue => venue.name)
-    };
+  getVenueAvailability() {
+    const cannotGo = [];
+    const canGo = [];
+
+    this.venues.forEach(venue => {
+      const reasons = this._getReasonsVenueIsNoGood(venue);
+
+      if (reasons.length > 0) {
+        cannotGo.push({name: venue.name, reasons});
+      } else {
+        canGo.push(venue.name);
+      }
+    });
+
+    return {canGo, cannotGo};
   }
 
-  _canPartyAtVenue(venue) {
-    return this.users.every((user) => {
-      return !user.wont_eat.some(userPref => venue.food.includes(userPref));
+  _getReasonsVenueIsNoGood(venue) {
+    const reasons = [];
+
+    this.users.forEach(user => {
+      const matchesAllFoodPrefs = !user.wont_eat.some(userPref => {
+        return venue.food.includes(userPref);
+      });
+
+      if (!matchesAllFoodPrefs) {
+        reasons.push(`There is nothing for ${user.name.split(' ')[0]} to eat`);
+      }
     });
+
+    return reasons;
   }
 }
