@@ -1,6 +1,10 @@
 /* eslint-disable camelcase */
 import VenueMapper from './VenueMapper';
 
+// User old school require to easily get test data
+const usersData = require('../data/users.json');
+const venuesData = require('../data/venues.json');
+
 describe('VenueMapper', () => {
   it('should return one place to go when food does not conflict', () => {
     const user = {name: 'John Davis', wont_eat: ['Fish']};
@@ -27,13 +31,15 @@ describe('VenueMapper', () => {
     expect(vm.getPlacesToGo().length).toEqual(0);
   });
 
-  it('should return 1 venue when one is valid regardless of conflicts', () => {
-    const user1 = {name: 'John Davis', wont_eat: ['Fish']};
-    const user2 = {name: 'Bob Dylan', wont_eat: ['Mexican']};
-    const venue1 = {food: ['Mexican'], name: 'El Cantina'};
-    const venue2 = {food: ['Chinese'], name: 'Twin Dynasty'};
-    const vm = new VenueMapper([user1, user2], [venue1, venue2]);
+  it('should return 5 venues when Fish, Eggs, Pasta, Bread, Pasta are not allowed', () => {
+    const vm = new VenueMapper(usersData.slice(0, 3), venuesData);
 
-    expect(vm.getPlacesToGo()).toEqual(['Twin Dynasty']);
+    expect(vm.getPlacesToGo()).toEqual([
+      'El Cantina',
+      'Twin Dynasty',
+      'Wagamama',
+      'Spirit House',
+      'Tally Joe'
+    ]);
   });
 });
