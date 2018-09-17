@@ -26,12 +26,21 @@ export default class VenueMapper {
     const reasons = [];
 
     this.users.forEach(user => {
+      const firstName = user.name.split(' ')[0];
+
       const matchesAllFoodPrefs = !user.wont_eat.some(userPref => {
         return venue.food.includes(userPref);
       });
+      const servesADrinkTheyLike = user.drinks.some(userPref => {
+        return venue.drinks.includes(userPref);
+      });
 
-      if (!matchesAllFoodPrefs) {
-        reasons.push(`There is nothing for ${user.name.split(' ')[0]} to eat`);
+      if (!matchesAllFoodPrefs && !servesADrinkTheyLike) {
+        reasons.push(`There is nothing for ${firstName} to eat or drink`);
+      } else if (!matchesAllFoodPrefs) {
+        reasons.push(`There is nothing for ${firstName} to eat`);
+      } else if (!servesADrinkTheyLike) {
+        reasons.push(`There is nothing for ${firstName} to drink`);
       }
     });
 
