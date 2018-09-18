@@ -8,6 +8,8 @@ export default class UserState {
   }
 
   add(user) {
-    this._selectedUsers.push(user);
+    if (!this._selectedUsers.some(selUser => selUser.name === user.name)) {
+      this._selectedUsers = [...this._selectedUsers, user];
+    }
   }
 }
