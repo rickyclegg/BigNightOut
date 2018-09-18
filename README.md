@@ -3,8 +3,8 @@
 A vanilla js application to show off to Timeout.
 
 ### Timings
-To be honest I've run out of time. I got carries away with writing tests and didn't get it all done.  
-Then enjoyed it so much, I carried on refactoring to make it better.
+To be honest I've run out of time. I got carries away with writing tests and didn't get all the integration ones done.
+I enjoyed it so much, I carried on refactoring to make it better.
 
 ### My Choices
 I started out on the wrong foot with `yo webapp` as I thought that would get me going fast! This was probably wrong, but a lesson well learnt.  
