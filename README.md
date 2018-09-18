@@ -33,5 +33,10 @@ If you run `npm test` you'll see all my tests running.
 * Use webpack and not gulp and `yo webapp`.
 * `_getReasonsVenueIsNoGood` is getting a little long. I would probably have a look at that.
 * The last tests expect is very long, I would like to tidy that up.
+* There is no reason for user facing text to be mixed in with logic. If formed naturally with my TDD, but really I would
+move that out to be someone elses concern.
+* I would create a `State` class to remember to the which users are selected. This would get the data `getSelectedUsers()` and pass this data to `VenueMapper`.
+I don't know exactly how it would look but I would start writing tests for the `State`, `State it should add one user to the state`, 2 users and so forth.
+The code would run so fast I could do a live list update, or do a small debounce.
 
 Thanks for this. I've really enjoyed it.
