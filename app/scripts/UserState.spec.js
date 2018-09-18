@@ -1,13 +1,11 @@
-/* eslint-disable camelcase */
-import UserState from './UserState';
-
+/* eslint-disable max-statements */
 // User old school require to easily get test data
 const usersData = require('../data/users.json');
 
 describe('UserState', () => {
   describe('Adding users', () => {
     it('should return one extra user when adding a NEW user', () => {
-      const users = new UserState();
+      const users = new timeout.UserState();
       const currentUsersTotal = users.selectedUsers.length;
 
       users.add(usersData[0]);
@@ -16,7 +14,7 @@ describe('UserState', () => {
     });
 
     it('should return a new version of the state', () => {
-      const users = new UserState();
+      const users = new timeout.UserState();
       const currentUsers = users.selectedUsers;
 
       users.add(usersData[0]);
@@ -25,7 +23,7 @@ describe('UserState', () => {
     });
 
     it('should return an array containing no duplicates', () => {
-      const users = new UserState();
+      const users = new timeout.UserState();
       const currentUsersTotal = users.selectedUsers.length;
 
       users.add(usersData[0]);
@@ -37,7 +35,7 @@ describe('UserState', () => {
 
   describe('Removing users', () => {
     it('should return one less users when removing a user', () => {
-      const users = new UserState();
+      const users = new timeout.UserState();
       let currentUsersTotal = 0;
 
       users.add(usersData[0]);
@@ -52,14 +50,11 @@ describe('UserState', () => {
     });
 
     it('should return one less users when removing a user by name', () => {
-      const users = new UserState();
-      let currentUsersTotal = 0;
+      const users = new timeout.UserState();
 
       users.add(usersData[0]);
       users.add(usersData[1]);
       users.add(usersData[2]);
-
-      currentUsersTotal = users.selectedUsers.length;
 
       users.remove('Gary Jones');
 
@@ -68,14 +63,11 @@ describe('UserState', () => {
     });
 
     it('should return the same number of user when removing the same user twice', () => {
-      const users = new UserState();
-      let currentUsersTotal = 0;
+      const users = new timeout.UserState();
 
       users.add(usersData[0]);
       users.add(usersData[1]);
       users.add(usersData[2]);
-
-      currentUsersTotal = users.selectedUsers.length;
 
       users.remove('Gary Jones');
       users.remove('Gary Jones');

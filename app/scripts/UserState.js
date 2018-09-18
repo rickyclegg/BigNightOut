@@ -1,4 +1,5 @@
-export default class UserState {
+window.timeout = window.timeout || {};
+window.timeout.UserState = class UserState {
   get selectedUsers() {
     return this._selectedUsers;
   }
@@ -28,4 +29,4 @@ export default class UserState {
       this._selectedUsers.splice(userIndex, 1);
     }
   }
-}
+};

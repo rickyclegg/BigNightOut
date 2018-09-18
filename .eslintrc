@@ -16,7 +16,8 @@
   "globals": {
     "inject": true,
     "cases": true,
-    "require": true
+    "require": true,
+    "timeout": true
   },
   "plugins": [
     "jasmine"

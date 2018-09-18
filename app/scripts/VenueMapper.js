@@ -1,4 +1,5 @@
-export default class VenueMapper {
+window.timeout = window.timeout || {};
+window.timeout.VenueMapper = class VenueMapper {
 
   static _createReason(fullName, reason) {
     const [firstName] = fullName.split(' ');
@@ -50,4 +51,4 @@ export default class VenueMapper {
 
     return reasons;
   }
-}
+};

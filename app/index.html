@@ -18,12 +18,28 @@
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div class="loading-component">Loading...</div>
-    <ul class="user-list"></ul>
+
+    <div id="app">
+      <h1>Big Night Out</h1>
+      <div class="loading-component">Loading...</div>
+      <h3>Who's coming</h3>
+      <ul class="user-list"></ul>
+      <h3>Places to go:</h3>
+      <ul class="can-go-places"></ul>
+      <h3>Places to avoid:</h3>
+      <ul class="cannot-go-places"></ul>
+    </div>
 
     <!-- build:js scripts/main.js -->
+    <script src="scripts/App.js"></script>
+    <script src="scripts/UserState.js"></script>
     <script src="scripts/VenueMapper.js"></script>
-    <script src="scripts/main.js"></script>
     <!-- endbuild -->
+
+    <script type="text/javascript">
+      var app = new timeout.App(document.getElementById('app'));
+
+      app.start();
+    </script>
   </body>
 </html>

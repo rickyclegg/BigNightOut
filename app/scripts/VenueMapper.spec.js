@@ -1,6 +1,3 @@
-/* eslint-disable camelcase */
-import VenueMapper from './VenueMapper';
-
 // User old school require to easily get test data
 const usersData = require('../data/users.json');
 const venuesData = require('../data/venues.json');
@@ -13,7 +10,7 @@ describe('VenueMapper', () => {
         food: ['Eggs', 'Meat', 'Pasta', 'Dairy'],
         name: 'Spice of life'
       };
-      const vm = new VenueMapper(usersData.slice(0, 1), [venue]);
+      const vm = new timeout.VenueMapper(usersData.slice(0, 1), [venue]);
 
       expect(vm.getVenueAvailability().canGo).toEqual(['Spice of life']);
     });
@@ -24,7 +21,7 @@ describe('VenueMapper', () => {
         food: ['Eggs', 'Meat', 'Pasta', 'Dairy'],
         name: 'Spice of life'
       };
-      const vm = new VenueMapper(usersData.slice(0, 1), [venue]);
+      const vm = new timeout.VenueMapper(usersData.slice(0, 1), [venue]);
       const availability = vm.getVenueAvailability();
 
       expect(availability.canGo.length).toEqual(0);
@@ -42,13 +39,13 @@ describe('VenueMapper', () => {
         food: ['Eggs', 'Meat', 'Fish', 'Pasta', 'Dairy'],
         name: 'Spice of life'
       };
-      const vm = new VenueMapper(usersData.slice(0, 2), [venue]);
+      const vm = new timeout.VenueMapper(usersData.slice(0, 2), [venue]);
 
       expect(vm.getVenueAvailability().canGo.length).toEqual(0);
     });
 
     it('should return 1 venues when Fish, Eggs, Pasta, Bread, Pasta are not allowed', () => {
-      const vm = new VenueMapper(usersData.slice(0, 3), venuesData);
+      const vm = new timeout.VenueMapper(usersData.slice(0, 3), venuesData);
 
       expect(vm.getVenueAvailability().canGo).toEqual(['Spirit House']);
     });
@@ -61,7 +58,7 @@ describe('VenueMapper', () => {
         food: ['Eggs', 'Meat', 'Pasta', 'Dairy'],
         name: 'Spice of life'
       };
-      const vm = new VenueMapper(usersData.slice(0, 1), [venue]);
+      const vm = new timeout.VenueMapper(usersData.slice(0, 1), [venue]);
 
       expect(vm.getVenueAvailability().cannotGo).toEqual([
         {
@@ -72,7 +69,7 @@ describe('VenueMapper', () => {
     });
 
     it('should return a reason for each person why they cannot eat or drink at that venue', () => {
-      const vm = new VenueMapper(usersData.slice(0, 3), venuesData);
+      const vm = new timeout.VenueMapper(usersData.slice(0, 3), venuesData);
 
       expect(vm.getVenueAvailability().cannotGo).toEqual([
         {
