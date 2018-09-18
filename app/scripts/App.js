@@ -4,32 +4,23 @@ window.timeout.App = class App {
     this.element = element;
   }
 
-  start() {
-    return this._getData()
-      .then(([usersData, venuesData]) => {
-        this.usersData = usersData;
-        this.venuesData = venuesData;
+  async start() {
+    const [usersData, venuesData] = await this._getData();
 
-        this._hideLoader();
-        this._setupUsers();
-        this._setupState();
-        this._updateResults();
+    this.usersData = usersData;
+    this.venuesData = venuesData;
 
-        return Promise.resolve();
-      });
+    this._hideLoader();
+    this._setupUsers();
+    this._setupState();
+    this._updateResults();
   }
 
-  _getData() {
-    return Promise.all([
-      this._getJSON(timeout.App.URL_USERS),
-      this._getJSON(timeout.App.URL_VENUES)
-    ])
-      .then(([userRes, venuesRes]) => {
-        return Promise.all([
-          userRes.json(),
-          venuesRes.json()
-        ]);
-      });
+  async _getData() {
+    const userRes = await this._getJSON(timeout.App.URL_USERS);
+    const venuesRes = await this._getJSON(timeout.App.URL_VENUES);
+
+    return [await userRes.json(), await venuesRes.json()];
   }
 
   _getJSON(url) {
