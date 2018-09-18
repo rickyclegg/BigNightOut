@@ -3,16 +3,19 @@
 A vanilla js application to show off to Timeout.
 
 ### Timings
-To be honest I've run out of time. This has been great fun, but now it is late, and I've still got to link up the UI,
-but hopefully you like what I've done.
+To be honest I've run out of time. I got carries away with writing tests and didn't get it all done.  
+Then enjoyed it so much, I carried on refactoring to make it better.
 
 ### My Choices
-I started with `yo webapp` as I thought that would get me going fast! This was probably wrong, but a lesson well learnt.  
-I chose Jasmine for testing, as I really like that it has spies, expects and everything built in and I don't need mocha, expect, sinon and so forth.  
-I'm using Babel to compile my ES6 down.
+I started out on the wrong foot with `yo webapp` as I thought that would get me going fast! This was probably wrong, but a lesson well learnt.  
+I chose Jasmine for testing with Karma, as I really like that it has spies, expects and everything built in and I don't need mocha, expect, sinon and so forth.  
+I'm using Babel to compile my ES6 down. 
+I'm using ESLint for linting.
 I went for a BDD approach. The code and test were very slick when it came to just doing the food part. I chose to go back and add the drinks functionality later.
 In hindsight I feel it would have been neater to do food and drinks at the same time. Feel free to look through my commits (I'm sure you will) to see how the code changed.  
 When I was TDD-ing the "good" path it was looking very slick with a filter. Was less happy with the final result needing `forEach`.
+`UserState` and `VenueMapper` were create with TDD the `App` was plumbed together testing after.  
+I have started writing integration tests for `App` however I did not get time to finish all the interactivity.
 
 ### The brief
 I may have misunderstood the brief so please forgive me for that.
@@ -27,16 +30,9 @@ If you run `npm test` you'll see all my tests running.
 ### If this was for real and on a bigger data set
 * I would web worker the `VenueMapper` as it has nothing to do with the dom.
 * I would memoize some of the logic, as it will speed up in memory comparisons.
-* Remove all magic strings.
-* Sort out `main.js` so its a bit tidier and not just functions.
 * Minify and sort out all those production like stuff.
-* Use webpack and not gulp and `yo webapp`.
-* `_getReasonsVenueIsNoGood` is getting a little long. I would probably have a look at that.
-* The last tests expect is very long, I would like to tidy that up.
-* There is no reason for user facing text to be mixed in with logic. If formed naturally with my TDD, but really I would
-move that out to be someone elses concern.
-* I would create a `State` class to remember to the which users are selected. This would get the data `getSelectedUsers()` and pass this data to `VenueMapper`.
-I don't know exactly how it would look but I would start writing tests for the `State`, `State it should add one user to the state`, 2 users and so forth.
-The code would run so fast I could do a live list update, or do a small debounce.
+* Use React and webpack and not gulp and `yo webapp`.
+* There is no reason for user facing text to be mixed in with logic. If formed naturally with my TDD, but really I would move that out to be someone elses concern.
+* Finish writing integration tests, and write some e2e tests with Protractor.
 
 Thanks for this. I've really enjoyed it.

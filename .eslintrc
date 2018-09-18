@@ -18,7 +18,8 @@
     "cases": true,
     "require": true,
     "timeout": true,
-    "fixture": true
+    "fixture": true,
+    "setFixtures": true
   },
   "plugins": [
     "jasmine"

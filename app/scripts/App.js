@@ -5,21 +5,24 @@ window.timeout.App = class App {
   }
 
   start() {
-    this._getData().then(([usersData, venuesData]) => {
-      this.usersData = usersData;
-      this.venuesData = venuesData;
+    return this._getData()
+      .then(([usersData, venuesData]) => {
+        this.usersData = usersData;
+        this.venuesData = venuesData;
 
-      this._hideLoader();
-      this._setupUsers();
-      this._setupState();
-      this._updateResults();
-    });
+        this._hideLoader();
+        this._setupUsers();
+        this._setupState();
+        this._updateResults();
+
+        return Promise.resolve();
+      });
   }
 
   _getData() {
     return Promise.all([
-      fetch('/data/users.json'),
-      fetch('/data/venues.json')
+      this._getJSON(timeout.App.URL_USERS),
+      this._getJSON(timeout.App.URL_VENUES)
     ])
       .then(([userRes, venuesRes]) => {
         return Promise.all([
@@ -29,15 +32,22 @@ window.timeout.App = class App {
       });
   }
 
+  _getJSON(url) {
+    return fetch(url);
+  }
+
   _hideLoader() {
-    this.element.querySelector(timeout.App.SELECTOR_LOADER).style.setProperty('display', 'none');
+    this.element.querySelector(timeout.App.SELECTOR_LOADER)
+      .style
+      .setProperty('display', 'none');
   }
 
   _setupUsers() {
     const userListEl = this.element.querySelector(timeout.App.SELECTOR_USER_LIST);
 
     userListEl.innerHTML =
-      this.usersData.map(user => `<li class="list-item">${user.name}</li>`).join('');
+      this.usersData.map(user => `<li class="list-item">${user.name}</li>`)
+        .join('');
 
     userListEl.onclick = this._onUserClick.bind(this);
   }
@@ -108,6 +118,8 @@ window.timeout.App = class App {
   }
 };
 
+window.timeout.App.URL_USERS = '/data/users.json';
+window.timeout.App.URL_VENUES = '/data/venues.json';
 window.timeout.App.SELECTOR_LOADER = '.loading-component';
 window.timeout.App.SELECTOR_USER_LIST = '.user-list';
 window.timeout.App.SELECTOR_CAN_GO = '.can-go-places';

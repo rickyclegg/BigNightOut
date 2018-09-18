@@ -10,13 +10,18 @@ module.exports = function (config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine-jquery', 'jasmine', 'fixture'],
+    frameworks: ['jasmine-jquery', 'jasmine-ajax', 'jasmine', 'fixture'],
 
     // list of files / patterns to load in the browser
     files: [
       {
         included: true,
         pattern: 'app/data/**/*.json',
+        served: true
+      },
+      {
+        included: true,
+        pattern: 'app/fixtures/**/*.html',
         served: true
       },
       'app/scripts/**/*.js'
@@ -28,6 +33,7 @@ module.exports = function (config) {
 
     preprocessors: {
       'app/data/**/*.json': ['json_fixtures'],
+      'app/fixtures/**/*.html': ['html2js'],
       'app/scripts/**/*.js': ['babel']
     },
 
