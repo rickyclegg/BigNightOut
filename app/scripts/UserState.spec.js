@@ -82,5 +82,19 @@ describe('UserState', () => {
       expect(users.selectedUsers[0].name).toEqual(usersData[0].name);
       expect(users.selectedUsers[1].name).toEqual(usersData[2].name);
     });
+
+    it('should return no users if all are removed', () => {
+      const users = new timeout.UserState();
+
+      users.add(usersData[0]);
+      users.add(usersData[1]);
+      users.add(usersData[2]);
+
+      users.remove(usersData[0]);
+      users.remove(usersData[1]);
+      users.remove(usersData[2]);
+
+      expect(users.selectedUsers.length).toEqual(0);
+    });
   });
 });

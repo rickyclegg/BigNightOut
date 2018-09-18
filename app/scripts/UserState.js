@@ -19,7 +19,9 @@ window.timeout.UserState = class UserState {
     let userIndex = -1;
 
     this.selectedUsers.some((selUser, index) => {
-      userIndex = selUser.name === userName && index || -1;
+      if (selUser.name === userName) {
+        userIndex = index;
+      }
 
       return userIndex > -1;
     });
