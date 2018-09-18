@@ -1,5 +1,11 @@
 export default class VenueMapper {
 
+  static _createReason(fullName, reason) {
+    const [firstName] = fullName.split(' ');
+
+    return `There is nothing for ${firstName} to ${reason}`;
+  }
+
   constructor(users, venues) {
     this.users = users;
     this.venues = venues;
@@ -26,8 +32,6 @@ export default class VenueMapper {
     const reasons = [];
 
     this.users.forEach(user => {
-      const [firstName] = user.name.split(' ');
-
       const matchesAllFoodPrefs = !user.wont_eat.some(userPref => {
         return venue.food.includes(userPref);
       });
@@ -36,11 +40,11 @@ export default class VenueMapper {
       });
 
       if (!matchesAllFoodPrefs && !servesADrinkTheyLike) {
-        reasons.push(`There is nothing for ${firstName} to eat or drink`);
+        reasons.push(VenueMapper._createReason(user.name, 'eat or drink'));
       } else if (!matchesAllFoodPrefs) {
-        reasons.push(`There is nothing for ${firstName} to eat`);
+        reasons.push(VenueMapper._createReason(user.name, 'eat'));
       } else if (!servesADrinkTheyLike) {
-        reasons.push(`There is nothing for ${firstName} to drink`);
+        reasons.push(VenueMapper._createReason(user.name, 'drink'));
       }
     });
 
