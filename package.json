@@ -6,7 +6,7 @@
   "scripts": {
     "start": "gulp serve",
     "lint": "gulp lint && gulp lint:test",
-    "unit": "babel-node jasmine.js",
+    "unit": "karma start",
     "test": "npm run lint && npm run unit"
   },
   "devDependencies": {
@@ -30,7 +30,18 @@
     "gulp-sourcemaps": "^2.2.0",
     "gulp-uglify": "^2.0.0",
     "gulp-useref": "^3.0.0",
+    "jasmine-core": "^3.2.1",
+    "jasmine-jquery": "^2.1.1",
     "jasmine-spec-reporter": "^4.2.1",
+    "karma": "^3.0.0",
+    "karma-babel-preprocessor": "^7.0.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-fixture": "^0.2.6",
+    "karma-jasmine": "^1.1.2",
+    "karma-jasmine-jquery": "^0.1.1",
+    "karma-json-fixtures-preprocessor": "0.0.6",
+    "karma-phantomjs-launcher": "^1.0.4",
+    "karma-spec-reporter": "0.0.32",
     "main-bower-files": "^2.5.0",
     "run-sequence": "^1.2.2",
     "wiredep": "^4.0.0"

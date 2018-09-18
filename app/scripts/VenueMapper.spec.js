@@ -1,8 +1,14 @@
-// User old school require to easily get test data
-const usersData = require('../data/users.json');
-const venuesData = require('../data/venues.json');
-
 describe('VenueMapper', () => {
+  let usersData;
+  let venuesData;
+
+  beforeAll(() => {
+    fixture.setBase('app/data');
+
+    usersData = fixture.load('users.json');
+    venuesData = fixture.load('venues.json');
+  });
+
   describe('Can go to', () => {
     it('should return one place to go when food does not conflict', () => {
       const venue = {

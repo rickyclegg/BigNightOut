@@ -17,7 +17,8 @@
     "inject": true,
     "cases": true,
     "require": true,
-    "timeout": true
+    "timeout": true,
+    "fixture": true
   },
   "plugins": [
     "jasmine"

@@ -1,8 +1,14 @@
 /* eslint-disable max-statements */
-// User old school require to easily get test data
-const usersData = require('../data/users.json');
 
 describe('UserState', () => {
+  let usersData;
+
+  beforeAll(() => {
+    fixture.setBase('app/data');
+
+    usersData = fixture.load('users.json');
+  });
+
   describe('Adding users', () => {
     it('should return one extra user when adding a NEW user', () => {
       const users = new timeout.UserState();
